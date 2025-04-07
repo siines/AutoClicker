@@ -11,40 +11,27 @@ A lightweight, feature-rich auto-clicking utility built with Dear ImGui and Dire
 - **Position Locking**: Option to lock the cursor position when clicking
 - **Global Hotkey**: Toggle the auto-clicker with a customizable hotkey
 - **Persistent Settings**: All your preferences are automatically saved and restored between sessions
-- **Modern UI**: Clean, borderless window interface with a custom title bar and **tabbed layout**.
+- **Modern UI**: Clean, borderless window interface with a custom title bar and tabbed layout
 - **Improved Key Binding**: Enhanced key binding UI with visual feedback and protection against accidental activation
 - **Cross-System Compatibility**: Fixed issues with hotkey detection on different systems
-- **Custom Application Icon**: Fixed icon display across File Explorer, taskbar, and window interfaces
-- **Updated Color Scheme**: Refreshed dark theme for better visual clarity.
-- **Startup Options**: Configure the application to start with Windows, start minimized, or start minimized directly to the system tray.
-- **Minimize on Close**: Option to minimize the application to the system tray instead of quitting when the close button is pressed.
+- **System Tray Support**: Option to minimize to system tray instead of taskbar
+- **Startup Options**: Configure the application to start with Windows and start minimized
+- **Dark Theme**: Modern dark theme with accent colors for better visual clarity
 
 ## What's New in This Version
 
-This version enhances the user experience and introduces new configuration options:
-
-- **Tabbed Interface**: Settings are now organized into intuitive tabs: "Clicking", "Hotkeys", and "Startup & Behavior".
-- **Refined Dark Theme**: Updated the color palette for a more modern and consistent look.
-- **Startup & Behavior Controls**:
-    - Added options to control how the application behaves on startup (Start with Windows, Start Minimized, Start Minimized to Tray).
-    - Added an option to minimize the application to the system tray when closed, rather than exiting.
-- **Settings Persistence**: Your configuration, including startup options, is now automatically saved and restored.
-- **Fixed Key Binding Issues**: Resolved a problem where pressing the key binding button would immediately register as the 'P' key on some systems.
-- **Activation Prevention**: Added a cooldown period after setting a hotkey to prevent accidental activation.
-- **Visual Feedback**: Added subtle visual cues to indicate when the application is ready to accept a new key binding
-- **Improved UX**: Streamlined the key binding process with clear feedback and status indicators
-- **Icon Implementation**: Properly integrated application icon across all Windows interfaces
-- **Manifest Configuration**: Fixed manifest handling to ensure proper Common Controls display
-- **Bug Fixes**: Fixed issues with key detection and handling across different systems
-
-## How It Works
-
-The application uses a dedicated thread for the clicking functionality, separate from the UI thread. This allows for responsive operation even when the application window isn't in focus.
-
-- The main interface is built with Dear ImGui, a lightweight immediate-mode GUI library
-- DirectX 11 is used for rendering
-- Input simulation is handled through the Windows API (SendInput)
-- The window features a custom-drawn title bar with minimize, maximize, and close buttons
+- **Tabbed Interface**: Settings are now organized into intuitive tabs: "Clicking", "Hotkeys", and "Startup & Behavior"
+- **System Tray Integration**: 
+  - Minimize to tray instead of closing
+  - Right-click tray icon for quick access to restore or exit options
+  - Double-click tray icon to restore the application
+- **Startup Options**:
+  - Start with Windows
+  - Start minimized
+  - Start minimized to system tray
+- **Improved Visual Feedback**: Added subtle animations and visual cues for better user experience
+- **Fixed Key Binding Issues**: Resolved problems with hotkey detection and added cooldown periods
+- **Optimized Performance**: Reduced resource usage and improved responsiveness
 
 ## Building the Project
 
@@ -57,73 +44,55 @@ The application uses a dedicated thread for the clicking functionality, separate
 ### Build Steps
 
 1. **Clone the repository**
-
-```
-git clone https://github.com/siines/AutoClicker.git
-cd AutoClicker
-```
+   ```
+   git clone https://github.com/siines/AutoClicker.git
+   cd AutoClicker
+   ```
 
 2. **Generate build files with CMake**
-
-```
-mkdir build
-cd build
-cmake ..
-```
+   ```
+   mkdir build
+   cd build
+   cmake ..
+   ```
 
 3. **Build the project**
-
-For Debug build:
-```
-cmake --build . --config Debug
-```
-
-For Release build:
-```
-cmake --build . --config Release
-```
+   ```
+   cmake --build . --config Release
+   ```
 
 4. **Run the application**
-
-The executable will be located in either `build/Debug/` or `build/Release/` depending on your build configuration.
+   The executable will be located in `build/Release/` folder.
 
 ## Usage Guide
 
 1. **Start the application**: Run the executable
-2. **Configure settings**:\n   - **Clicking Tab**:
-     - Set the click interval in milliseconds.
-     - Choose whether to lock the cursor position.
-     - Select the input type (mouse or keyboard).
-     - For mouse input, select which button to simulate.
-     - For keyboard input, select which key to simulate.
+
+2. **Configure settings**:
+   - **Clicking Tab**:
+     - Set the click interval in milliseconds
+     - Choose whether to lock the cursor position
+     - Select the input type (mouse or keyboard)
+     - For mouse input, select which button to simulate
+     - For keyboard input, select which key to simulate
    - **Hotkeys Tab**:
-     - Click the button to change the start/stop toggle hotkey. Press your desired key (ESC to cancel).
+     - Click the button to change the start/stop toggle hotkey (ESC to cancel)
    - **Startup & Behavior Tab**:
-     - Configure options like "Start with Windows", "Start Minimized", "Start Minimized to System Tray", and "Minimize to Tray on Close".
-3. **Start/Stop clicking**:\n   - Click the "Start" button or use the configured hotkey (default: F6).
-   - The clicking will continue until stopped by pressing the button or hotkey again.
-4. **Customize hotkey**:
-   - Navigate to the **Hotkeys Tab**.
-   - Click on the hotkey button.
-   - Wait for the "Press new key" prompt.
-   - Press your desired key to change the toggle hotkey.
-   - A brief cooldown period will prevent accidental activation.
-5. **Minimize to Tray**: If "Minimize to Tray on Close" is enabled, clicking the 'X' button will hide the window and show an icon in the system tray. Double-click the tray icon or right-click for options (Restore/Exit).
+     - Configure options like "Start with Windows", "Start Minimized", "Start Minimized to System Tray", and "Minimize to Tray on Close"
 
-## Known Issues and Limitations
+3. **Start/Stop clicking**:
+   - Click the "Start" button or use the configured hotkey (default: F6)
+   - The clicking will continue until stopped by pressing the button or hotkey again
 
-- **Window Dragging**: If dragging the window doesn't work properly, try clicking on the title bar area
-- **Resource Loading**: Custom icon loading is currently disabled to prevent resource-related crashes
-- **Multiple Monitors**: Cursor position may behave unexpectedly with certain multi-monitor configurations
-- **High DPI Settings**: May have UI scaling issues on high DPI displays
-- **Application Focus**: The auto-clicker will continue to operate even when other applications are in focus
-- **Administrator Rights**: Some applications may require the auto-clicker to run with administrator privileges
+4. **System Tray Features**:
+   - If "Minimize to Tray on Close" is enabled, clicking the 'X' button will hide the window and show an icon in the system tray
+   - Double-click the tray icon to restore the application
+   - Right-click the tray icon for options (Restore/Exit)
+   - The Exit option always quits the application completely, regardless of settings
 
 ## Troubleshooting
 
 - **Application doesn't start**: Make sure your graphics drivers are up to date and DirectX 11 is properly installed
 - **Clicking doesn't work**: Some applications with enhanced security may block simulated inputs
 - **Hotkey doesn't respond**: Ensure the hotkey isn't already in use by another application
-- **Window appears blank**: Try restarting the application or updating your graphics drivers
-- **Key binding immediately selects 'P'**: This issue should be fixed in this version, but if it persists, try clicking the button and waiting for the visual indicator before pressing your desired key
-- **Icon not updating in File Explorer**: If the application icon appears inconsistent between File Explorer and taskbar, try clearing your Windows icon cache or restarting Explorer
+- **High DPI Settings**: If UI appears too small or distorted, adjust Windows scaling settings or run in compatibility mode
