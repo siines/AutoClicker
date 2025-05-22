@@ -1,0 +1,41 @@
+# Build directories
+build/
+out/
+
+# Visual Studio files
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.aps
+.vs/
+
+# Executables
+*.exe
+*.dll
+*.pdb
+
+# Object files
+*.obj
+*.o
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Dependencies (will be downloaded by CMake)
+imgui/
+vcpkg/ 
